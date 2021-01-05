@@ -73,6 +73,10 @@ namespace FSWDFinalProject.UI.MVC.Models
         public string LastName { get; set; }
 
         [Required]
+        [Display(Name = "Resume File")]
+        public string ResumeFilename { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

@@ -159,7 +159,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                     newUserDeets.UserId = user.Id;
                     newUserDeets.FirstName = model.FirstName;
                     newUserDeets.LastName = model.LastName;
-                    //newUserDeets.ResumeFilename = model.ResumeFilename; -- TODO File Upload
+                    newUserDeets.ResumeFilename = model.ResumeFilename;
                     #endregion
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
