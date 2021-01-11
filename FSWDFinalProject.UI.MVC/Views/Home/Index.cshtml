@@ -1,31 +1,116 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿    <!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-cntent-center align-items-center">
+    <div id="heroCarousel" class="container carousel carousel-fade" data-ride="carousel">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+            <div class="carousel-container">
+                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Not So Job Bored</span></h2>
+                <p class="animate__animated animate__fadeInUp">We started this business with one simple goal and that was to get you jobs. Nowadays, job finding websites are hard to navigate and an eyesore to look at. Thats why we developed the Not So Job Bored, so you dont have to be bored looking at jobs anymore!</p>
+                <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+            </div>
+        </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+            <div class="carousel-container">
+                <h2 class="animate__animated animate__fadeInDown">No Tan Aburrido</h2>
+                <p class="animate__animated animate__fadeInUp">Comenzamos este negocio con un objetivo simple y eso era conseguirle trabajo. Hoy en día, los sitios web de búsqueda de empleo son difíciles de navegar y una monstruosidad de ver. Es por eso que desarrollamos Not So Job Bored, ¡para que ya no tengas que aburrirte mirando trabajos!</p>
+                <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+            <div class="carousel-container">
+                <h2 class="animate__animated animate__fadeInDown">Pas Si Ennuyé Par Le Travail</h2>
+                <p class="animate__animated animate__fadeInUp">Nous avons démarré cette entreprise avec un objectif simple: vous offrir des emplois. De nos jours, les sites Web de recherche d'emploi sont difficiles à naviguer et une horreur à regarder. C'est pourquoi nous avons développé le Not So Job Bored, pour que vous n'ayez plus à vous ennuyer en regardant des emplois!</p>
+                <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+    <!-- ======= Services Section ======= -->
+    <section class="services">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+                    <div class="icon-box icon-box-pink">
+                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                        <h4 class="title"><a href="">Jobs</a></h4>
+                        <p class="description">Maybe you dont need a full carrer right now and are looking for something a bit smaller, well you can get those here too!</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box icon-box-cyan">
+                        <div class="icon"><i class="bx bx-file"></i></div>
+                        <h4 class="title"><a href="">Careers</a></h4>
+                        <p class="description">Looking to step into the life of having a career? Well here you can! We have all kinds of careers available with just one click!</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box icon-box-green">
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">Relationships</a></h4>
+                        <p class="description">Sometimes you find that meeting with people might be better than getting the job - that way you can have them recommend you to other employers!</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box icon-box-blue">
+                        <div class="icon"><i class="bx bx-world"></i></div>
+                        <h4 class="title"><a href="">Success</a></h4>
+                        <p class="description">We here at Not So Job Bored are here to help you succeed no matter what! We have 24/7 customer service available so you can get the help you need getting a job anytime!</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Services Section -->
+    <!-- ======= Why Us Section ======= -->
+    <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6 video-box">
+                    <img src="~/Content/assets/img/why-us.jpg" class="img-fluid" alt="">
+                </div>
+
+                <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
+
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-fingerprint"></i></div>
+                        <h4 class="title"><a href="">Find Connections</a></h4>
+                        <p class="description">One of the most important parts about finding a job is making connections with people. That way you can always have people to ask around if you need a job on short notice. We here at Not So Job Bored want to provide you with just that opportunity - to make connections.</p>
+                    </div>
+
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-gift"></i></div>
+                        <h4 class="title"><a href="">Do What You Love</a></h4>
+                        <p class="description">We here at Not So Job Bored want to provide you with plenty of options so you feel you can get exactly ehat you are looking for. Nobody wants to work a job they dont like, so now you dont have to!</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Why Us Section -->
+</main><!-- End #main -->

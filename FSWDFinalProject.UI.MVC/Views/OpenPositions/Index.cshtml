@@ -1,0 +1,68 @@
+﻿@model IEnumerable<FSWDFinalProject.DATA.EF.OpenPosition>
+
+@{
+    ViewBag.Title = "Open Positions";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+}
+<table class="table data-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.StoreNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position.Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.StoreNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position.Title)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "OpenPositions", new { id = item.OpenPositionId })">
+                        <i class="fa fa-info-circle action-icons" aria-hidden="true"></i>
+                    </a>
+                    @if (User.IsInRole("Employee"))
+                    {
+                        <a href="@Url.Action("Apply", "OpenPositions", new { id = item.OpenPositionId })">
+                            <i class="fa fa-check action-icons" aria-hidden="true"></i>
+                        </a>
+                    }
+                        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        {
+                            <a href="@Url.Action("Edit", "OpenPositions", new { id=item.OpenPositionId })">
+                                <i class="fa fa-pencil-square-o action-icons" aria-hidden="true"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", "OpenPositions", new { id = item.OpenPositionId })">
+                                <i class="fa fa-trash-o action-icons" aria-hidden="true"></i>
+                            </a>
+                        }
+                    </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".data-table").DataTable();
+        })
+    </script>
+}

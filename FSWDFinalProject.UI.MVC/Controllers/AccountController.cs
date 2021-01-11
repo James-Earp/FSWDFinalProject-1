@@ -1,8 +1,10 @@
 ﻿using FSWDFinalProject.DATA.EF;
 using FSWDFinalProject.UI.MVC.Models;
+using FSWDFinalProject.UI.MVC.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -17,7 +19,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -146,7 +148,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase resume)
         {
             if (ModelState.IsValid)
             {
@@ -154,27 +156,68 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    #region Code
                     UserDetail newUserDeets = new UserDetail();
                     newUserDeets.UserId = user.Id;
                     newUserDeets.FirstName = model.FirstName;
                     newUserDeets.LastName = model.LastName;
-                    newUserDeets.ResumeFilename = model.ResumeFilename;
-                    #endregion
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
+
+                    //no default for the noImage.png because in the DB ALL records should have a valid file name
+                    //AND all files should be represented in the Website Content folder
+
+                    //if there is NO File in the input, maintain the existing image (Front End using a hidden field)
+                    //if the input is not = to Null process the image with the updates
+                    if (resume != null)
+                    {
+                        //retrieve the image and assign to a variable
+                        string imgName = resume.FileName;
+
+                        //declare and assign the extension
+                        string ext = imgName.Substring(imgName.LastIndexOf('.'));
+
+                        //declare a good list of file extensions
+                        //string[] goodExts = {".pdf" };
+
+                        //check the ext variable ToLower() against our list of good exts and verify the content length
+                        //if good
+                        if (ext.ToLower() == ".pdf" && (resume.ContentLength <= 4194304))//4mb max by asp.net
+                        {
+                            //rename the file using a guid
+                            imgName = Guid.NewGuid() + ext.ToLower();
+
+                            #region Save UnResized value to the webserver
+                            //save the NEW file to the webserver
+                            resume.SaveAs(Server.MapPath("~/Content/imgstore/resumes/" + imgName));
+                            #endregion
+
+
+                            if (model.ResumeFilename != null)
+                            {
+                                string path = Server.MapPath("~/Content/imgstore/resumes/");
+                                ImageService.Delete(path, model.ResumeFilename);
+                            }
+
+                        }
+                        //save it to the object ONLY if all other conditions have been met
+                        newUserDeets.ResumeFilename = imgName;
+                    }
+                    else
+                    {
+                        return RedirectToAction("Register", model);
+                    }
+                    UserManager.AddToRole(user.Id, "Employee");
+                    //var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    //ViewBag.Link = callbackUrl;
 
                     JobBoardEntities db = new JobBoardEntities();
                     db.UserDetails.Add(newUserDeets);
                     db.SaveChanges();
 
-                    return View("DisplayEmail");
+                    return RedirectToAction("Login", "Account");
                 }
                 AddErrors(result);
-            }
-
+            }//use the hiddenFor()
             // If we got this far, something failed, redisplay form
             return View(model);
         }

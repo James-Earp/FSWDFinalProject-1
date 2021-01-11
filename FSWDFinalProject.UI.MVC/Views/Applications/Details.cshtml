@@ -1,0 +1,76 @@
+﻿@model FSWDFinalProject.DATA.EF.Application
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Application</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Date of Application
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationDate)
+        </dd>
+
+        <dt>
+            Manager Notes
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManagerNotes)
+        </dd>
+
+        <dt>
+            Resume
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResumeFilename)
+        </dd>
+
+        <dt>
+            Status of Application
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationStatus.StatusName)
+        </dd>
+
+        <dt>
+            Open Position
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpenPosition.OpenPositionId)
+        </dd>
+
+        <dt>
+            Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserDetail.FullName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationId })
+    }
+    @if (User.IsInRole("Employee"))
+    {
+        <a href="@Url.Action("Apply", "OpenPositions")">
+            <i class="fa fa-check action-icons" aria-hidden="true"></i>
+        </a>
+    }
+
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -112,6 +112,8 @@ namespace FSWDFinalProject.DATA.EF
         [Required(ErrorMessage = "* Last Name is Required.")]
         [StringLength(50, ErrorMessage = "* Last Name must be 50 characters or less.")]
         public string LastName { get; set; }
+
+        [Display(Name = "Resume File")]
         public string ResumeFilename { get; set; }
     }
         [MetadataType(typeof(UserDetailMetadata))]

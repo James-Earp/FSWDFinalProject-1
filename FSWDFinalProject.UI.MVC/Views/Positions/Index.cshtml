@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FSWDFinalProject.DATA.EF.Position>
+
+@{
+    ViewBag.Title = "Positions";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+}
+
+
+<table class="table data-table">
+    <thead>
+        <tr>
+            <th>
+                Job Title
+            </th>
+            <th>
+                Job Description
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobDescription)
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                    {
+                        <a href="@Url.Action("Edit", "Positions", new { id=item.PositionId })">
+                            <i class="fa fa-pencil-square-o action-icons" aria-hidden="true"></i>
+                        </a>
+                        <a href="@Url.Action("Details", "Positions", new { id = item.PositionId })">
+                            <i class="fa fa-info-circle action-icons" aria-hidden="true"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Positions", new { id = item.PositionId })">
+                            <i class="fa fa-trash-o action-icons" aria-hidden="true"></i>
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".data-table").DataTable();
+        })
+    </script>
+}

@@ -72,7 +72,7 @@ namespace FSWDFinalProject.UI.MVC.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
+        //[Required] - Processed Manually
         [Display(Name = "Resume File")]
         public string ResumeFilename { get; set; }
 

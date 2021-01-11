@@ -17,6 +17,16 @@
         <AssociationConnector Association="JobBoardModel.FK_Locations_UserDetails" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_OpenPositions_Locations" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_OpenPositions_Positions" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="JobBoardModel.C__MigrationHistory" Width="1.5" PointX="5.625" PointY="0.75" />
+        <EntityTypeShape EntityType="JobBoardModel.AspNetRole" Width="1.5" PointX="1.5" PointY="8.25" />
+        <EntityTypeShape EntityType="JobBoardModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="13.375" />
+        <EntityTypeShape EntityType="JobBoardModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="10.75" />
+        <EntityTypeShape EntityType="JobBoardModel.AspNetUser" Width="1.5" PointX="0.75" PointY="3" />
+        <EntityTypeShape EntityType="JobBoardModel.sysdiagram" Width="1.5" PointX="7.625" PointY="0.75" />
+        <AssociationConnector Association="JobBoardModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="JobBoardModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="JobBoardModel.FK_UserDetails_AspNetUsers" />
+        <AssociationConnector Association="JobBoardModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

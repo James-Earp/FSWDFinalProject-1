@@ -1,0 +1,17 @@
+﻿/**Stylesheet for custom styles and overriding styles from other sheets*/
+#mainContent {
+    padding-top: 5.5em;
+    width: 80%;
+    margin: auto;
+    min-height: 417px;
+}
+
+#footer-links{
+    width: 80%;
+    margin: auto;
+}
+
+#Contact-id{
+    margin: auto;
+        width: 80%;
+}

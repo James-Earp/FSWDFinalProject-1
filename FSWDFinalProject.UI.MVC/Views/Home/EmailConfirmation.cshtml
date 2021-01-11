@@ -1,0 +1,25 @@
+﻿@model FSWDFinalProject.UI.MVC.Models.ContactViewModel
+@{
+    ViewBag.Title = "EmailConfirmation";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    Your message has been sent, @Model.Name. Message review below.
+</p>
+
+<ul>
+    <li>
+        Name: @Model.Name
+    </li>
+    <li>
+        Email: @Model.Email
+    </li>
+    <li>
+        Subject: @Model.Subject
+    </li>
+    <li>
+        Message: @Model.Message
+    </li>
+</ul>
